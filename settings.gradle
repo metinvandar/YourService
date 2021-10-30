@@ -1,0 +1,2 @@
+rootProject.name = "YourService"
+include ':app'
