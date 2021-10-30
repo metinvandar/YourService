@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/nav_home_fragment"
+    android:id="@+id/nav_graph_main">
+
+    <fragment
+        android:id="@+id/nav_home_fragment"
+        android:name="com.metinvandar.yourservice.view.home.HomeFragment"
+        android:label="@string/home_fragment_label"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_characters_to_detail"
+            app:destination="@id/nav_detail_fragment" >
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_detail_fragment"
+        android:name="com.metinvandar.yourservice.view.detail.DetailFragment"
+        android:label="@string/detail_fragment_label"
+        tools:layout="@layout/fragment_detail">
+    </fragment>
+
+</navigation>
