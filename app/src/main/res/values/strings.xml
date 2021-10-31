@@ -2,4 +2,11 @@
     <string name="app_name">YourService</string>
     <string name="home_fragment_label">Home</string>
     <string name="detail_fragment_label">Detail</string>
+    <string name="home_header">Hizmet piş \nağzıma düş</string>
+    <string name="home_search_hint">What service do you need ?</string>
+    <string name="home_all_services_title">All services</string>
+    <string name="home_popular_services_header">Popular these days</string>
+    <string name="home_wedding_service_short_name">Düğün</string>
+    <string name="home_health_education_short_name">Eğitim</string>
+    <string name="home_posts_header">Latest from the blog</string>
 </resources>
