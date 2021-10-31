@@ -11,8 +11,21 @@
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_characters_to_detail"
-            app:destination="@id/nav_detail_fragment" >
+            android:id="@+id/action_home_to_detail"
+            app:destination="@id/nav_detail_fragment">
+            <argument
+                android:name="serviceId"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+
+        <action
+            android:id="@+id/action_home_to_web_view"
+            app:destination="@id/nav_web_view_fragment">
+            <argument
+                android:name="link"
+                app:argType="string"
+                app:nullable="false" />
         </action>
     </fragment>
     <fragment
@@ -21,5 +34,13 @@
         android:label="@string/detail_fragment_label"
         tools:layout="@layout/fragment_detail">
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_web_view_fragment"
+        android:name="com.metinvandar.yourservice.view.detail.WebViewFragment"
+        android:label="@string/web_view_fragment_label"
+        tools:layout="@layout/fragment_detail">
+    </fragment>
+
 
 </navigation>

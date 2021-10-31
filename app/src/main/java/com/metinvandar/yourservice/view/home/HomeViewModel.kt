@@ -1,6 +1,5 @@
 package com.metinvandar.yourservice.view.home
 
-import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.metinvandar.yourservice.data.Resource
@@ -29,28 +28,34 @@ class HomeViewModel @Inject constructor(
     private fun getHomeData() {
         viewModelScope.launch {
             _uiState.value = uiState.value.copy(
-                isLoading = true
+                loading = true,
+                error = false,
+                isConnected = true
             )
             when (val homeResult = repository.getHomeData()) {
                 is Resource.Success -> {
-                    handleSuccess(homeResult.data.services, homeResult.data.posts, homeResult.data.popularServices)
+                    handleSuccess(
+                        homeResult.data.services,
+                        homeResult.data.posts,
+                        homeResult.data.popularServices
+                    )
                 }
                 is Resource.Error -> {
-                    val errorMessage = if (homeResult.isNetworkError) {
-                        "Check your internet connection"
-                    } else {
-                        "Something went wrong"
-                    }
-                    handleError(errorMessage)
+                    handleError(homeResult)
                 }
             }
         }
     }
 
-    private fun handleSuccess(services: List<ServiceItem>, posts: List<PostItem>, popularServices: List<ServiceItem>) {
+    private fun handleSuccess(
+        services: List<ServiceItem>,
+        posts: List<PostItem>,
+        popularServices: List<ServiceItem>
+    ) {
         _uiState.value = uiState.value.copy(
-            isLoading = false,
-            errorMessage = null,
+            error = false,
+            isConnected = true,
+            loading = false,
             homeData = HomeData(
                 services = services,
                 popularServices = popularServices,
@@ -59,10 +64,11 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    private fun handleError(errorMessage: String) {
+    private fun handleError(error: Resource.Error) {
         _uiState.value = uiState.value.copy(
-            isLoading = false,
-            errorMessage = errorMessage
+            error = true,
+            loading = false,
+            isConnected = !error.isNetworkError
         )
     }
 }

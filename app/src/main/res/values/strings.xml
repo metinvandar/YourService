@@ -2,6 +2,7 @@
     <string name="app_name">YourService</string>
     <string name="home_fragment_label">Home</string>
     <string name="detail_fragment_label">Detail</string>
+    <string name="web_view_fragment_label">Post</string>
     <string name="home_header">Hizmet piş \nağzıma düş</string>
     <string name="home_search_hint">What service do you need ?</string>
     <string name="home_all_services_title">All services</string>
@@ -9,4 +10,9 @@
     <string name="home_wedding_service_short_name">Düğün</string>
     <string name="home_health_education_short_name">Eğitim</string>
     <string name="home_posts_header">Latest from the blog</string>
+    <string name="detail_prof_number_near">%1$d pros near you</string>
+    <string name="detail_average_rating">%1$s average rating</string>
+    <string name="detail_job_completed">Last month %1$d job completed</string>
+    <string name="detail_free_of_charge">Free of charge</string>
+    <string name="detail_service_guaranteed">Service guaranteed</string>
 </resources>

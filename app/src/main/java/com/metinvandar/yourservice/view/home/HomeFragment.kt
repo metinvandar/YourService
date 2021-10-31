@@ -5,10 +5,12 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.metinvandar.yourservice.R
 import com.metinvandar.yourservice.databinding.FragmentHomeBinding
+import com.metinvandar.yourservice.utils.showErrorView
 import com.metinvandar.yourservice.view.home.adapter.*
 import com.metinvandar.yourservice.view.home.decoration.GridSpaceItemDecoration
 import com.metinvandar.yourservice.view.home.decoration.HorizontalSpaceDecoration
@@ -45,18 +47,29 @@ class HomeFragment : Fragment(R.layout.fragment_home), ServiceItemClickListener,
     }
 
     private fun renderUIState(state: HomeUIState) {
-        with(state) {
-            if (isLoading) {
-                binding.nsvHome.visibility = View.GONE
-                binding.progressBarHome.visibility = View.VISIBLE
-            } else {
-                allServicesAdapter.submitList(homeData.services)
-                popularListAdapter.submitList(homeData.popularServices)
-                postAdapter.submitList(homeData.posts)
-                binding.nsvHome.visibility = View.VISIBLE
-                binding.progressBarHome.visibility = View.GONE
+        when {
+            state.error -> {
+                binding.apply {
+                    nsvHome.visibility = View.GONE
+                    progressBarHome.visibility = View.GONE
+                }
+                showErrorView(state)
             }
-
+            state.loading -> {
+                binding.apply {
+                    nsvHome.visibility = View.GONE
+                    progressBarHome.visibility = View.VISIBLE
+                }
+            }
+            else -> {
+                allServicesAdapter.submitList(state.homeData.services)
+                popularListAdapter.submitList(state.homeData.popularServices)
+                postAdapter.submitList(state.homeData.posts)
+                binding.apply {
+                    nsvHome.visibility = View.VISIBLE
+                    progressBarHome.visibility = View.GONE
+                }
+            }
         }
     }
 
@@ -100,10 +113,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), ServiceItemClickListener,
     }
 
     override fun onItemClick(serviceId: Int) {
-
+        findNavController().navigate(HomeFragmentDirections.actionHomeToDetail(serviceId))
     }
 
     override fun onPostClick(link: String) {
-
+        findNavController().navigate(HomeFragmentDirections.actionHomeToWebView(link))
     }
 }

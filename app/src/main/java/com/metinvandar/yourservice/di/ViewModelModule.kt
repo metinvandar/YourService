@@ -1,14 +1,16 @@
 package com.metinvandar.yourservice.di
 
+import com.metinvandar.yourservice.data.model.DetailResponse
 import com.metinvandar.yourservice.data.model.Post
 import com.metinvandar.yourservice.data.model.Service
+import com.metinvandar.yourservice.data.repository.DetailRepository
+import com.metinvandar.yourservice.data.repository.DetailRepositoryImp
 import com.metinvandar.yourservice.data.repository.HomeRepository
 import com.metinvandar.yourservice.data.repository.HomeRepositoryImp
 import com.metinvandar.yourservice.data.service.Api
-import com.metinvandar.yourservice.domain.mappers.ModelMapper
-import com.metinvandar.yourservice.domain.mappers.PostItemMapper
-import com.metinvandar.yourservice.domain.mappers.ServiceItemMapper
+import com.metinvandar.yourservice.domain.mappers.*
 import com.metinvandar.yourservice.domain.models.PostItem
+import com.metinvandar.yourservice.domain.models.ServiceDetailedItem
 import com.metinvandar.yourservice.domain.models.ServiceItem
 import dagger.Module
 import dagger.Provides
@@ -18,7 +20,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
 @InstallIn(ViewModelComponent::class)
-class HomeModule {
+class ViewModelModule {
 
     @Provides
     @ViewModelScoped
@@ -40,6 +42,21 @@ class HomeModule {
     @ViewModelScoped
     fun providePostItemMapper(): ModelMapper<Post, PostItem> {
         return PostItemMapper()
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideDetailMapper(): ModelMapper<DetailResponse, ServiceDetailedItem> {
+        return DetailMapper()
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideDetailRepository(
+        api: Api,
+        serviceItemMapper: ModelMapper<DetailResponse, ServiceDetailedItem>
+    ): DetailRepository {
+        return DetailRepositoryImp(api, serviceItemMapper)
     }
 
 }
