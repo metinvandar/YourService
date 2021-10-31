@@ -1,4 +1,4 @@
-package com.metinvandar.yourservice.utils
+package com.metinvandar.yourservice.view
 
 interface UIState {
     val isConnected: Boolean

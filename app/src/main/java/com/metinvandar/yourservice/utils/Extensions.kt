@@ -3,12 +3,14 @@ package com.metinvandar.yourservice.utils
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.metinvandar.yourservice.view.UIState
 
 fun View.snackBar(message: String, action: (() -> Unit)? = null) {
-    val snackBar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
+    val snackBar = Snackbar.make(this, message, Snackbar.LENGTH_INDEFINITE)
     action?.let {
         snackBar.setAction("Retry") {
             it()
+            snackBar.dismiss()
         }
     }
     snackBar.show()

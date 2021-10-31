@@ -1,7 +1,6 @@
 package com.metinvandar.yourservice.data.repository
 
 import com.metinvandar.yourservice.data.Resource
-import com.metinvandar.yourservice.data.model.HomeResponse
 import com.metinvandar.yourservice.data.model.Post
 import com.metinvandar.yourservice.data.model.Service
 import com.metinvandar.yourservice.data.service.Api

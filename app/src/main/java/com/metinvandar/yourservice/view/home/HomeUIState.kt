@@ -1,7 +1,7 @@
 package com.metinvandar.yourservice.view.home
 
 import com.metinvandar.yourservice.domain.models.HomeData
-import com.metinvandar.yourservice.utils.UIState
+import com.metinvandar.yourservice.view.UIState
 
 data class HomeUIState(
     override val loading: Boolean = false,

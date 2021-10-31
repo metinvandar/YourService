@@ -1,7 +1,7 @@
 package com.metinvandar.yourservice.view.detail
 
 import com.metinvandar.yourservice.domain.models.ServiceDetailedItem
-import com.metinvandar.yourservice.utils.UIState
+import com.metinvandar.yourservice.view.UIState
 
 data class DetailUIState(
     override val isConnected: Boolean = true,

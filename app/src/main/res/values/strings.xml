@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">YourService</string>
     <string name="home_fragment_label">Home</string>
-    <string name="detail_fragment_label">Detail</string>
+    <string name="detail_fragment_label">Service</string>
     <string name="web_view_fragment_label">Post</string>
     <string name="home_header">Hizmet piş \nağzıma düş</string>
     <string name="home_search_hint">What service do you need ?</string>
